@@ -1,244 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Runner Certificate Generator</title>
-  <style>
-    .dashboard {
-      display: flex;
-      margin: 20px;
-    }
-
-    .field-list {
-      margin-right: 20px;
-      width: 300px;
-    }
-
-    .field-button {
-      display: block;
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .field-button:hover {
-      background-color: #45a049;
-    }
-
-    .template-preview {
-      position: relative;
-      width: 1754px;
-      height: 1240px;
-      background: lightgray;
-      border: 1px solid #000;
-      background-size: cover;
-      background-position: center;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-    }
-
-    .template-item {
-      position: absolute;
-      padding: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid #333;
-      cursor: move;
-    }
-
-    #itemModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      border: 1px solid #333;
-      padding: 20px;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    #itemModal button {
-      padding: 8px 12px;
-      margin-right: 10px;
-    }
-
-    #itemModal #deleteBtn {
-      background: red;
-      color: white;
-      border: none;
-    }
-
-    #itemModal #closeBtn {
-      background: #ccc;
-      border: none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="header">
+    <h1 class="title">Certificate Generator by Ziyonet</h1>
+  </header>
 
-<div class="dashboard">
-  <div class="field-list">
-    <h3>Certificate Fields</h3>
-    <button class="field-button" data-label="Name" data-placeholder="{{name}}">Name</button>
-    <button class="field-button" data-label="Marathon Name" data-placeholder="{{marathon_name}}">Marathon Name</button>
-    <button class="field-button" data-label="Age" data-placeholder="{{age}}">Age</button>
-    <button class="field-button" data-label="Run KM" data-placeholder="{{run_km}}">Run KM</button>
-    <button class="field-button" data-label="Place" data-placeholder="{{place}}">Place</button>
+  <div class="dashboard">
+    <div class="field-list">
+      <div class="button-area">
+        <h3>Add data-placeholders </h3>
+        <button class="field-button" data-label="Name" data-placeholder="{{NamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakfNamefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakf}}">
+          Namefslsadjklhsdkljhkljahfklfhsadfjklhfklsadjhfsadfjklhsdakf
+        </button>
+        <button class="field-button" data-label="Marathon Name" data-placeholder="{{marathon_name}}">Marathon Name</button>
+        <button class="field-button" data-label="Age" data-placeholder="{{age}}">Age</button>
+        <button class="field-button" data-label="Run KM" data-placeholder="{{run_km}}">Run KM</button>
+        <button class="field-button" data-label="Place" data-placeholder="{{place}}">Place</button>
+        <button class="field-button" data-label="Age" data-placeholder="{{age}}">Age</button>
+        <button class="field-button" data-label="Run KM" data-placeholder="{{run_km}}">Run KM</button>
+        <button class="field-button" data-label="Place" data-placeholder="{{place}}">Place</button>
+        <button class="field-button" data-label="Age" data-placeholder="{{age}}">Age</button>
+        <button class="field-button" data-label="Run KM" data-placeholder="{{run_km}}">Run KM</button>
+        <button class="field-button" data-label="Place" data-placeholder="{{place}}">Place</button>
+      </div>
 
-    <hr />
-    <h4>Upload Certificate Background</h4>
-    <input type="file" id="bgUpload" accept="image/*">
+      <hr />
+      <div class="upload-section">
+        <label for="bgUpload" class="upload-box">
+          <div class="upload-icon">📄</div>
+          <div class="upload-text">Upload A4 image</div>
+          <div class="upload-note">Recommended size: 2480 × 3508 px (A4)</div>
+        </label>
+        <input type="file" id="bgUpload" accept="image/*" hidden />
+      </div>
+
+      <button class="ratio-button" id="ratio169">16:9</button>
+      <button class="ratio-button" id="ratio916">9:16</button>
+    </div>
+
+    <div class="template-preview" id="templateArea"></div>
   </div>
 
-  <div class="template-preview" id="templateArea"></div>
-</div>
+  <!-- Modal for Font Options -->
+  <div id="itemModal">
+    <p id="modalLabel"></p>
 
-<!-- Modal for Font Options -->
-<div id="itemModal">
-  <p id="modalLabel"></p>
+    <label>Font Family:</label>
+    <select id="fontFamilySelect">
+      <option value="Arial">Arial</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Verdana">Verdana</option>
+    </select>
 
-  <label>Font Family:</label>
-  <select id="fontFamilySelect">
-    <option value="Arial">Arial</option>
-    <option value="Georgia">Georgia</option>
-    <option value="Times New Roman">Times New Roman</option>
-    <option value="Courier New">Courier New</option>
-    <option value="Verdana">Verdana</option>
-  </select>
-  <br><br>
+    <label>Font Size (px):</label>
+    <input type="number" id="fontSizeInput" min="8" max="72" />
 
-  <label>Font Size (px):</label>
-  <input type="number" id="fontSizeInput" min="8" max="72" />
-  <br><br>
+    <button id="applyBtn">Apply</button>
+    <button id="deleteBtn">Delete</button>
+    <button id="closeBtn">Close</button>
+  </div>
 
-  <button id="applyBtn">Apply</button>
-  <button id="deleteBtn">Delete</button>
-  <button id="closeBtn">Close</button>
-</div>
-
-<script>
-  let selectedField = null;
-  let newItem = null;
-  let draggingItem = null;
-  let offsetX, offsetY;
-  let selectedItemForEdit = null;
-
-  const template = document.getElementById('templateArea');
-  const modal = document.getElementById('itemModal');
-  const modalLabel = document.getElementById('modalLabel');
-  const deleteBtn = document.getElementById('deleteBtn');
-  const closeBtn = document.getElementById('closeBtn');
-  const fontFamilySelect = document.getElementById('fontFamilySelect');
-  const fontSizeInput = document.getElementById('fontSizeInput');
-  const applyBtn = document.getElementById('applyBtn');
-
-  // Handle dragging
-  template.addEventListener('mousedown', function (e) {
-    if (e.target.classList.contains('template-item')) {
-      draggingItem = e.target;
-      const rect = draggingItem.getBoundingClientRect();
-      offsetX = e.clientX - rect.left;
-      offsetY = e.clientY - rect.top;
-    }
-  });
-
-  template.addEventListener('mousemove', function (e) {
-    const rect = template.getBoundingClientRect();
-    if (newItem) {
-      newItem.style.left = `${e.clientX - rect.left - newItem.offsetWidth / 2}px`;
-      newItem.style.top = `${e.clientY - rect.top - newItem.offsetHeight / 2}px`;
-    } else if (draggingItem) {
-      draggingItem.style.left = `${e.clientX - rect.left - offsetX}px`;
-      draggingItem.style.top = `${e.clientY - rect.top - offsetY}px`;
-    }
-  });
-
-  template.addEventListener('mouseup', function () {
-    newItem = null;
-    draggingItem = null;
-  });
-
-  // Insert new field into template
-  document.querySelectorAll('.field-button').forEach(button => {
-    button.addEventListener('click', function () {
-      const label = button.getAttribute('data-label');
-      const placeholder = button.getAttribute('data-placeholder');
-
-      const item = document.createElement('div');
-      item.classList.add('template-item');
-      item.setAttribute('data-label', label);
-      item.textContent = `${label}: ${placeholder}`;
-      item.style.left = '0px';
-      item.style.top = '0px';
-
-      template.appendChild(item);
-      newItem = item;
-    });
-  });
-
-  // Handle double-click for editing
-  template.addEventListener('dblclick', function (e) {
-    if (e.target.classList.contains('template-item')) {
-      selectedItemForEdit = e.target;
-      modalLabel.textContent = 'Field: ' + selectedItemForEdit.getAttribute('data-label');
-      fontFamilySelect.value = selectedItemForEdit.style.fontFamily || 'Arial';
-      fontSizeInput.value = parseInt(selectedItemForEdit.style.fontSize) || 16;
-      modal.style.display = 'block';
-    }
-  });
-
-  // Live update font on input
-  fontSizeInput.addEventListener('input', () => {
-    if (selectedItemForEdit) {
-      selectedItemForEdit.style.fontSize = fontSizeInput.value + 'px';
-    }
-  });
-
-  fontFamilySelect.addEventListener('change', () => {
-    if (selectedItemForEdit) {
-      selectedItemForEdit.style.fontFamily = fontFamilySelect.value;
-    }
-  });
-
-  // Modal buttons
-  applyBtn.addEventListener('click', function () {
-    if (selectedItemForEdit) {
-      selectedItemForEdit.style.fontFamily = fontFamilySelect.value;
-      selectedItemForEdit.style.fontSize = fontSizeInput.value + 'px';
-    }
-    modal.style.display = 'none';
-  });
-
-  deleteBtn.addEventListener('click', function () {
-    if (selectedItemForEdit) {
-      selectedItemForEdit.remove();
-      selectedItemForEdit = null;
-    }
-    modal.style.display = 'none';
-  });
-
-  closeBtn.addEventListener('click', function () {
-    modal.style.display = 'none';
-    selectedItemForEdit = null;
-  });
-
-  // Upload background image
-  const bgUpload = document.getElementById('bgUpload');
-  bgUpload.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      template.style.backgroundImage = `url(${e.target.result})`;
-    };
-    reader.readAsDataURL(file);
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
