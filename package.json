@@ -1,0 +1,23 @@
+{
+  "name": "certify",
+  "version": "1.0.0",
+  "description": "sertificat generator which is maded in custom template area",
+  "main": "script.js",
+  "scripts": {
+    "test": "devmode"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KEBOAIBEK/pdfgenerate.git"
+  },
+  "keywords": [
+    "template",
+    "certificate"
+  ],
+  "author": "Oybek Ayubov",
+  "license": "MIT ",
+  "bugs": {
+    "url": "https://github.com/KEBOAIBEK/pdfgenerate/issues"
+  },
+  "homepage": "https://github.com/KEBOAIBEK/pdfgenerate#readme"
+}
