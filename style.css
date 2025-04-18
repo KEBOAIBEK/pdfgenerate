@@ -1,10 +1,13 @@
+/* General Reset and Typography */
 body {
   box-sizing: border-box;
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #f9f9f9;
+  color: #111827;
 }
 
+/* Layout */
 .dashboard {
   display: flex;
   flex-direction: row;
@@ -12,30 +15,31 @@ body {
 
 .header {
   display: flex;
-  height: 50px;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  height: 50px;
+  background-color: #fff;
   padding: 6px 24px;
 }
 
 .header h1 {
-  font-weight: 700;
   font-size: 24px;
+  font-weight: 700;
   color: #0f9e16;
 }
 
+/* Sidebar Field List */
 .field-list {
-  background: #ffffff;
+  background: #fff;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   width: 280px;
   height: calc(100vh - 104px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.field-list h3, .field-list h4 {
+.field-list h3,
+.field-list h4 {
   margin-bottom: 16px;
-  color: #111827;
 }
 
 .button-area {
@@ -43,42 +47,27 @@ body {
   flex-direction: column;
   gap: 6px;
   height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.format-size {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
+/* Buttons */
+.field-button,
 .ratio-button {
   width: 100%;
-  margin-bottom: 12px;
   padding: 10px 14px;
   border: none;
   border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .field-button {
-  width: 100%;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
   background-color: #e0ecff;
   color: #1d4ed8;
-  display: inline;
-  align-items: center;
-  max-width: 300px;
-  white-space: normal;
-  word-wrap: break-word;
-  text-align: center;
 }
 
 .field-button:hover {
@@ -87,33 +76,40 @@ body {
 
 .ratio-button {
   background-color: #1d4ed8;
-  color: white;
+  color: #fff;
 }
 
 .ratio-button:hover {
   background-color: #2563eb;
 }
 
+.format-size {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
 
 
+
+/* Template Preview */
 .template-preview {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0 auto;
   width: 1240px;
   height: 877px;
+  margin: 0 auto;
   background-color: #f3f4f6;
   border: 2px dashed #cbd5e1;
   border-radius: 16px;
   background-size: cover;
   background-position: center;
-  font-size: 16px;
   transition: width 0.3s ease, height 0.3s ease;
-
+  font-size: 16px;
 }
 
+/* Template Items */
 .template-item {
   position: absolute;
   padding: 6px 10px;
@@ -125,107 +121,118 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: inline;
   align-items: center;
-  /* Remove max-width if you want the width to be flexible */
-  width: auto;  /* Allow the width to be adjusted dynamically */
+  width: auto;
   white-space: normal;
   word-wrap: break-word;
 }
 
-
+/* Item Modal */
 #itemModal {
-  display: none; /* Make sure it stays hidden initially */
+  display: none;
   position: fixed;
-  top: 30%;
-  right: 1%;
-  background: #ffffff;
-  border-radius: 12px;
+  top: 20%;
+  right: 0;
+  width: 340px;
   padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  width: 300px;
 }
 
-#itemModal select, #itemModal input[type="color"], #itemModal input[type="range"] {
+#itemModal h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+#itemModal label {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 12px 0 4px;
   display: block;
-  width: 100%;
-  margin-bottom: 12px;
-  font-size: 14px;
 }
 
-#itemModal select,
-#itemModal input {
+#itemModal input[type="text"],
+#itemModal input[type="number"],
+#itemModal input[type="color"],
+#itemModal select {
   width: 100%;
-  margin-bottom: 12px;
+  padding: 10px 12px;
   font-size: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
-#itemModal button {
-  padding: 10px;
+#itemModal input[type="range"] {
+  width: 100%;
+  margin: 6px 0 12px;
+}
+
+#itemModal .range-wrapper {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+#itemModal .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#itemModal .actions button {
+  flex: 1;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
   border: none;
   border-radius: 8px;
-  margin-top: 10px;
-  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s ease;
+  margin-left: 6px;
 }
 
+#itemModal .actions button:first-child {
+  margin-left: 0;
+}
+
+/* Modal Buttons */
 #applyBtn {
   background-color: #1d4ed8;
   color: #fff;
+  border-radius: 8px;
+    padding: 8px 16px;
+    outline: none;
+    border: none;
 }
 
 #deleteBtn {
   background-color: #ef4444;
   color: #fff;
-  margin-left: 8px;
-}
-
-#closeBtn {
-  background-color: #e5e7eb;
-  color: #111827;
-  margin-left: 8px;
-}
-
-
-
-#itemModal label, #itemModal select, #itemModal input {
-  display: block;
-  width: 100%;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-
-#itemModal button {
-  padding: 10px;
-  border: none;
   border-radius: 8px;
-  margin-top: 10px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-#applyBtn {
-  background-color: #1d4ed8;
-  color: #fff;
-}
-
-#deleteBtn {
-  background-color: #ef4444;
-  color: #fff;
-  margin-left: 8px;
+    padding: 8px 16px;
+    outline: none;
+    border: none;
 }
 
 #closeBtn {
   background-color: #e5e7eb;
   color: #111827;
-  margin-left: 8px;
+  border-radius: 8px;
+    padding: 8px 16px;
+    outline: none;
+    border: none;
 }
 
-
-
+/* Upload Section */
 input[type="file"] {
-  border: 2px dashed #cbd5e1;
-  padding: 12px;
   width: 100%;
+  padding: 12px;
+  border: 2px dashed #cbd5e1;
   border-radius: 8px;
   background-color: #f8fafc;
   margin-top: 8px;
@@ -242,11 +249,11 @@ input[type="file"] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #cbd5e1;
   padding: 24px;
+  border: 2px dashed #cbd5e1;
   border-radius: 12px;
-  cursor: pointer;
   background-color: #f8fafc;
+  cursor: pointer;
   transition: border-color 0.2s ease;
 }
 
@@ -262,12 +269,10 @@ input[type="file"] {
 
 .upload-text {
   font-size: 16px;
-  color: #3b82f6;
   font-weight: 500;
+  color: #3b82f6;
 }
 
 .upload-note {
-  margin-top: 6px;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 12
 }
