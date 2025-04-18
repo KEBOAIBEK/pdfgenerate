@@ -8,6 +8,7 @@
 <body>
   <header class="header">
     <h1 class="title">Certificate Generator by Ziyonet</h1>
+    <h2 class="subtitle">Download pdf</h2>
   </header>
 
   <div class="dashboard">
@@ -29,7 +30,6 @@
         <button class="field-button" data-label="Place" data-placeholder="{{place}}">Place</button>
       </div>
 
-      <hr />
       <div class="upload-section">
         <label for="bgUpload" class="upload-box">
           <div class="upload-icon">📄</div>
@@ -39,33 +39,56 @@
         <input type="file" id="bgUpload" accept="image/*" hidden />
       </div>
 
-      <button class="ratio-button" id="ratio169">16:9</button>
-      <button class="ratio-button" id="ratio916">9:16</button>
+      <div class="format-size">
+        <button class="ratio-button" id="ratio169">16:9</button>
+        <button class="ratio-button" id="ratio916">9:16</button>
+      </div>
     </div>
 
     <div class="template-preview" id="templateArea"></div>
   </div>
 
-  <!-- Modal for Font Options -->
-  <div id="itemModal">
-    <p id="modalLabel"></p>
+ <!-- Modal Content -->
+<div id="itemModal">
+  <label id="modalLabel">Field:</label>
+  
+  <!-- Font Family -->
+  <label for="fontFamilySelect">Font Family</label>
+  <select id="fontFamilySelect">
+    <option value="Arial">Arial</option>
+    <option value="Verdana">Verdana</option>
+    <option value="Courier New">Courier New</option>
+    <option value="Times New Roman">Times New Roman</option>
+  </select>
+  
+  <!-- Font Size -->
+  <label for="fontSizeInput">Font Size (px)</label>
+  <input type="number" id="fontSizeInput" value="16" min="10" max="100">
+  
+  <!-- Font Weight -->
+  <label for="fontWeightSelect">Font Weight</label>
+  <select id="fontWeightSelect">
+    <option value="normal">Normal</option>
+    <option value="bold">Bold</option>
+    <option value="lighter">Lighter</option>
+    <option value="bolder">Bolder</option>
+  </select>
+  
+  <!-- Text Color -->
+  <label for="textColorInput">Text Color</label>
+  <input type="color" id="textColorInput" value="#111827">
+  
+  <!-- Width Control -->
+  <label for="widthControl">Width (px)</label>
+  <input type="number" id="widthControl" value="300" min="100" max="1000" step="1">
 
-    <label>Font Family:</label>
-    <select id="fontFamilySelect">
-      <option value="Arial">Arial</option>
-      <option value="Georgia">Georgia</option>
-      <option value="Times New Roman">Times New Roman</option>
-      <option value="Courier New">Courier New</option>
-      <option value="Verdana">Verdana</option>
-    </select>
-
-    <label>Font Size (px):</label>
-    <input type="number" id="fontSizeInput" min="8" max="72" />
-
+  <div>
     <button id="applyBtn">Apply</button>
     <button id="deleteBtn">Delete</button>
     <button id="closeBtn">Close</button>
   </div>
+</div>
+<button id="showModalBtn">Show Modal</button>
 
   <script src="script.js"></script>
 </body>

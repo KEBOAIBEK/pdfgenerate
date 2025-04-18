@@ -1,4 +1,5 @@
 body {
+  box-sizing: border-box;
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #f9f9f9;
@@ -29,7 +30,7 @@ body {
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   width: 280px;
-  height: 100vh;
+  height: calc(100vh - 104px);
 }
 
 .field-list h3, .field-list h4 {
@@ -41,8 +42,14 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  height: 400px;
+  height: 500px;
   overflow-y: scroll;
+}
+
+.format-size {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 .ratio-button {
@@ -87,13 +94,14 @@ body {
   background-color: #2563eb;
 }
 
+
+
 .template-preview {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
-  overflow-y: auto;
   position: relative;
+  margin: 0 auto;
   width: 1240px;
   height: 877px;
   background-color: #f3f4f6;
@@ -103,6 +111,7 @@ body {
   background-position: center;
   font-size: 16px;
   transition: width 0.3s ease, height 0.3s ease;
+
 }
 
 .template-item {
@@ -113,27 +122,70 @@ body {
   border-radius: 8px;
   cursor: move;
   font-weight: 500;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: inline;
   align-items: center;
-  max-width: 300px;
+  /* Remove max-width if you want the width to be flexible */
+  width: auto;  /* Allow the width to be adjusted dynamically */
   white-space: normal;
   word-wrap: break-word;
 }
 
+
 #itemModal {
-  display: none;
+  display: none; /* Make sure it stays hidden initially */
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 30%;
+  right: 1%;
   background: #ffffff;
   border-radius: 12px;
   padding: 24px;
   z-index: 1000;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 300px;
 }
+
+#itemModal select, #itemModal input[type="color"], #itemModal input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+#itemModal select,
+#itemModal input {
+  width: 100%;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+#itemModal button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#applyBtn {
+  background-color: #1d4ed8;
+  color: #fff;
+}
+
+#deleteBtn {
+  background-color: #ef4444;
+  color: #fff;
+  margin-left: 8px;
+}
+
+#closeBtn {
+  background-color: #e5e7eb;
+  color: #111827;
+  margin-left: 8px;
+}
+
+
 
 #itemModal label, #itemModal select, #itemModal input {
   display: block;
@@ -167,6 +219,8 @@ body {
   color: #111827;
   margin-left: 8px;
 }
+
+
 
 input[type="file"] {
   border: 2px dashed #cbd5e1;
