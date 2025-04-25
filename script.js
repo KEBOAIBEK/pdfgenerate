@@ -17,16 +17,100 @@ const closeBtn = document.getElementById('closeBtn');
 const modalLabel = document.getElementById('modalLabel');
 const bgUpload = document.getElementById('bgUpload');
 
+// Add this function to save the current template data
+function saveCurrentTemplate() {
+  // Create a data object to hold template information
+  const templateData = {
+    width: template.style.width || '1240px',
+    height: template.style.height || '877px',
+    backgroundImage: null,
+    items: []
+  };
+  
+  // Get background image if exists
+  if (template.style.backgroundImage) {
+    templateData.backgroundImage = template.style.backgroundImage.replace('url("', '').replace('")', '');
+  }
+  
+  // Get all template items
+  const items = document.querySelectorAll('.template-item');
+  items.forEach(item => {
+    const labelAndPlaceholder = item.textContent.split(': ');
+    templateData.items.push({
+      label: item.getAttribute('data-label'),
+      placeholder: labelAndPlaceholder.length > 1 ? labelAndPlaceholder[1] : item.textContent,
+      style: {
+        fontFamily: item.style.fontFamily || 'Arial',
+        fontSize: item.style.fontSize || '16px',
+        fontWeight: item.style.fontWeight || 'normal',
+        color: item.style.color || '#111827',
+        width: item.style.width || '300px',
+        left: item.style.left || '0px',
+        top: item.style.top || '0px'
+      }
+    });
+  });
+  
+  return templateData;
+}
+
+document.querySelector('.header .btn').addEventListener('click', () => {
+  const downloadBtn = document.querySelector('.header .btn');
+  const templatePreview = document.querySelector('.template-preview');
+  
+  downloadBtn.disabled = true;
+  downloadBtn.textContent = 'Sending Data...';
+
+  const templateData = saveCurrentTemplate();
+  const htmlContent = templatePreview.outerHTML;
+  const orientation = parseInt(templateData.width) > parseInt(templateData.height) ? 'landscape' : 'portrait';
+
+  const requestBody = {
+    htmlContent: htmlContent,
+    width: templateData.width,
+    height: templateData.height,
+    orientation: orientation
+  };
+
+  const backendUrl = 'https://b6d9-195-158-8-218.ngrok-free.app/api/marathon/Certificates/GeneratePdf';
+
+  fetch(backendUrl, {
+    method: 'POST',
+    body: JSON.stringify(requestBody),
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'Accept': 'application/json'
+    }
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to download PDF");
+      return response.blob();
+    })
+    .then((blob) => {
+      let a = document.createElement('a');
+      a.download = `certificate.pdf`;
+      a.href = window.URL.createObjectURL(blob);
+      a.click();
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download PDF';
+    })
+    .catch(err => {
+      console.error(err);
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download PDF';
+    });
+});
+
+
+
 // Modal functionality to edit template item
 function openModalForEdit(item) {
   modalLabel.textContent = `Field: ${item.getAttribute('data-label')}`;
-  
   fontFamilySelect.value = item.style.fontFamily || 'Arial';
   fontSizeInput.value = parseInt(item.style.fontSize) || 16;
   fontWeightSelect.value = item.style.fontWeight || 'normal';
   textColorInput.value = item.style.color || '#111827';
   widthControl.value = parseInt(item.style.width) || 300;
-  
   modal.style.display = 'block';
 }
 
@@ -118,6 +202,7 @@ document.querySelectorAll('.field-button').forEach(button => {
     item.style.left = '0px';
     item.style.top = '0px';
     item.style.width = '300px'; // Default width
+    item.style.position = 'absolute';
     item.style.background = 'none';
 
     template.appendChild(item);
