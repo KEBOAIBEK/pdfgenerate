@@ -21,8 +21,8 @@ const bgUpload = document.getElementById('bgUpload');
 function saveCurrentTemplate() {
   // Create a data object to hold template information
   const templateData = {
-    width: template.style.width || '1240px',
-    height: template.style.height || '877px',
+    width: template.style.width ,
+    height: template.style.height ,
     backgroundImage: null,
     items: []
   };
@@ -45,8 +45,11 @@ function saveCurrentTemplate() {
         fontWeight: item.style.fontWeight || 'normal',
         color: item.style.color || '#111827',
         width: item.style.width || '300px',
-        left: item.style.left || '0px',
-        top: item.style.top || '0px'
+        // left: item.style.left || '0px',
+        // top: item.style.top || '0px',
+        // bottom: item.style.bottom || '0px',
+        // right: item.style.right || '0px'
+        
       }
     });
   });
@@ -72,7 +75,7 @@ document.querySelector('.header .btn').addEventListener('click', () => {
     orientation: orientation
   };
 
-  const backendUrl = 'https://b6d9-195-158-8-218.ngrok-free.app/api/marathon/Certificates/GeneratePdf';
+  const backendUrl = 'https://f8c2-195-158-8-218.ngrok-free.app/api/marathon/Certificates/GeneratePdf2';
 
   fetch(backendUrl, {
     method: 'POST',
@@ -226,14 +229,14 @@ fontFamilySelect.addEventListener('change', () => {
 });
 
 // Set template ratio (16:9 or 9:16)
-document.getElementById('ratio169').addEventListener('click', () => {
+document.getElementById('a4-portrait').addEventListener('click', () => {
   template.style.width = '1240px';
-  template.style.height = '697px';
+  template.style.height = '1754px';
 });
 
-document.getElementById('ratio916').addEventListener('click', () => {
-  template.style.width = '595px';
-  template.style.height = '842px';
+document.getElementById('a4-landscape').addEventListener('click', () => {
+  template.style.width = '1754px';
+  template.style.height = '1240px';
 });
 
 // Handle background image upload
@@ -244,6 +247,8 @@ bgUpload.addEventListener('change', (event) => {
   const reader = new FileReader();
   reader.onload = (e) => {
     template.style.backgroundImage = `url(${e.target.result})`;
+    template.style.backgroundSize = 'cover';
+    template.style.backgroundRepeat = 'no-repeat';
   };
   reader.readAsDataURL(file);
 });

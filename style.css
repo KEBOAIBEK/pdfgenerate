@@ -221,6 +221,11 @@ body {
   margin-left: 0;
 }
 
+img {
+  width: 100%; /* or a specific pixel value like 800px */
+  height: auto; /* preserves aspect ratio */
+}
+
 /* Modal Buttons */
 #applyBtn {
   background-color: #1d4ed8;
