@@ -75,7 +75,7 @@ document.querySelector('.header .btn').addEventListener('click', () => {
     orientation: orientation
   };
 
-  const backendUrl = 'https://f8c2-195-158-8-218.ngrok-free.app/api/marathon/Certificates/GeneratePdf2';
+  const backendUrl = 'http://192.168.10.88:8447/api/marathon/Certificates/GeneratePdf';
 
   fetch(backendUrl, {
     method: 'POST',
